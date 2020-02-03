@@ -1,0 +1,26 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: ch-deployment
+spec:
+  selector:  # it tells what are your labels and our labels are template labels
+    matchLabels:
+      app: ch-devops-project
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  # strategy:
+  #  type: RollingUpdate
+  #  rollingUpdate:
+  #    maxSurge: 1
+  #    maxUnavailable: 1
+
+  template:
+    metadata:
+      labels:
+        app: ch-devops-project
+    spec:
+      containers:
+      - name: ch-devops-project
+        image: izmebalu/funk:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
