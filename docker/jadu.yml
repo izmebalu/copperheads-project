@@ -1,0 +1,7 @@
+---
+ - hosts: all
+   become: true
+   tasks: 
+     - name: push to docker
+       command: docker push izmebalu/funk:1.0
+       ignore_errors: yes    

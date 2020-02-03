@@ -1,0 +1,38 @@
+---
+ - hosts: all
+   become: true
+
+   tasks:
+     - name: stop the running container
+       command: docker stop zumba
+       ignore_errors: yes
+
+     - name: remove the stopped container
+       command: docker rm -f zumba
+       ignore_errors: yes
+
+     - name: delete the image
+       command: docker rmi funk:1.0
+       ignore_errors: yes
+      
+     - name: pull from dockerhub
+       command: docker pull izmebalu/funk:1.0
+
+     - name: create container
+       command: docker run -d  -p 8181:8080 --name zumba izmebalu/funk:1.0    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

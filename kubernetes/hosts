@@ -1,0 +1,5 @@
+[ansible-server]
+localhost
+
+[kubernetes]
+18.141.139.115

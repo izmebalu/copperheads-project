@@ -1,0 +1,42 @@
+---
+ - hosts: all
+   become: true
+
+   tasks:
+     
+     - name: create docker image
+       command: docker build -t funk:1.0 .
+       args:
+         chdir: /opt/docker
+
+     - name: tag the image 
+       command: docker tag funk:1.0 izmebalu/funk:1.0
+
+     - name: Docker Login
+       docker_login:
+         username: izmebalu
+         password: oneplus5vr!2
+
+     - name: pushing to the dockerhub
+       command: docker push izmebalu/funk:1.0 
+       ignore_errors: yes
+        
+     - name: deleting the image in local server
+       command: docker rmi funk:1.0 izmebalu/funk:1.0 
+       ignore_errors: yes
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
